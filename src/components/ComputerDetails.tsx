@@ -4,7 +4,9 @@ import { supabase } from '../lib/supabase';
 import type { Computer, Component, Incident } from '../types';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { Monitor, Cpu, Keyboard, Mouse, Network, AlertCircle, CheckCircle } from 'lucide-react';
+import { AlertCircle, CheckCircle } from 'lucide-react';
+//import { Monitor, Cpu, Keyboard, Mouse, Network, AlertCircle, CheckCircle } from 'lucide-react';
+
 
 export default function ComputerDetails() {
   const { id } = useParams<{ id: string }>();
@@ -43,16 +45,16 @@ export default function ComputerDetails() {
     fetchComputerDetails();
   }, [id]);
 
-  const getComponentIcon = (type: string) => {
-    switch (type) {
-      case 'monitor': return <Monitor className="h-5 w-5" />;
-      case 'pc': return <Cpu className="h-5 w-5" />;
-      case 'keyboard': return <Keyboard className="h-5 w-5" />;
-      case 'mouse': return <Mouse className="h-5 w-5" />;
-      case 'network': return <Network className="h-5 w-5" />;
-      default: return null;
-    }
-  };
+  // const getComponentIcon = (type: string) => {
+  //   switch (type) {
+  //     case 'monitor': return <Monitor className="h-5 w-5" />;
+  //     case 'pc': return <Cpu className="h-5 w-5" />;
+  //     case 'keyboard': return <Keyboard className="h-5 w-5" />;
+  //     case 'mouse': return <Mouse className="h-5 w-5" />;
+  //     case 'network': return <Network className="h-5 w-5" />;
+  //     default: return null;
+  //   }
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,6 +133,7 @@ export default function ComputerDetails() {
               <input
                 type="text"
                 required
+                placeholder="Nombre del Estudiante"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 value={newIncident.studentName}
                 onChange={(e) => setNewIncident(prev => ({ ...prev, studentName: e.target.value }))}
@@ -143,6 +146,7 @@ export default function ComputerDetails() {
               <input
                 type="text"
                 required
+                placeholder="Grupo"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 value={newIncident.groupName}
                 onChange={(e) => setNewIncident(prev => ({ ...prev, groupName: e.target.value }))}
@@ -150,10 +154,11 @@ export default function ComputerDetails() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor="component" className="block text-sm font-medium text-gray-700">
               Componente
             </label>
             <select
+              id="component"
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               value={newIncident.componentId}
@@ -173,6 +178,7 @@ export default function ComputerDetails() {
             </label>
             <textarea
               required
+              placeholder="Descripción de la incidencia"
               rows={3}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               value={newIncident.description}
@@ -185,6 +191,7 @@ export default function ComputerDetails() {
             </label>
             <input
               type="text"
+              placeholder="Profesor que reporta la incidencia"
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               value={newIncident.reportedBy}
