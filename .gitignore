@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Build directories
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/
+.bolt/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+
+# Supabase migrations
+supabase/migrations/
+
+# Tailwind CSS
+tailwind.config.js
+
+# TypeScript
+*.tsbuildinfo
+
+# Vite
+.vite/
